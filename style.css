@@ -10,20 +10,29 @@ kbd{
 	width: 4em; 
 	height: 4em; 
 	display: inline-block;
-	text-transform: uppercase;   /*小写转换为大写*/
+	text-transform: uppercase;     /*小写转换为大写*/
 	position: relative;
 }
 kbd > button{
+	font-size: 6px;
 	position: absolute;
-	right: 0;
+	left: 0;
 	bottom: 0;
 	display: none;
 }
 kbd:hover > button{
 	display: inline-block;
 }
+body{
+	background: grey url(./wall.png) no-repeat center center scroll;/*图片没加载时是灰色，第六个值一般为默认*/
+	background-size: cover;    /*屏幕自适应（覆盖屏幕）*/
+}
 main{
 	text-align: center;
+	display: flex;
+	justify-content: center;   /*左右居中*/
+	align-items: center;       /*上下居中*/
+	height: 100vh;          /*viewport height 屏幕高度*/
 }
 #main{
 	display:inline-block;
@@ -34,6 +43,10 @@ main{
 #main > div:nth-child(3){
 	margin-left: -80px;
 }
+.wrapper{
+	background: rgba(255,255,255,0.4);   /*透明白色框*/
+	border-radius: 10px;
+}
 .key{
 	width: 50px;
 	height: 40px;
@@ -42,15 +55,25 @@ main{
 	border-radius: 6px;
 	color: #C5C5C5;
 	box-shadow: 0 0 0 1px #1A1B1B, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
-	display: inline-flex;
-	align-items: center;          /*键上下居中*/
-	justify-content: center;      /*键左右居中*/
 	font-size: 16px;                  /*键的上下间距*/
 	font-family: Helvetica;           /*键的左右间距*/
+	position: relative;
 }
 .row{
 	margin: 20px;
 }
 .row .key{
 	margin: 0 10px;
+}
+.key img{
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	right: 4px;
+	bottom: 4px;
+}
+.key .text{
+	position: absolute;
+	left: 6px;
+	top: 4px;
 }

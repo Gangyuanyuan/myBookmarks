@@ -8,26 +8,6 @@
 <body>
 	<header></header>
 	<main>
-		<style>
-			.key{
-				width: 50px;
-				height: 40px;
-				background: linear-gradient(to bottom, #292929 0%,#111111 100%);
-				border: 1px solid #373737;
-				border-radius: 6px;
-				color: #C5C5C5;
-				box-shadow: 0 0 0 1px #1A1B1B, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
-				display: inline-flex;
-				align-items: center;            /*上下居中*/
-				justify-content: center;        /*左右居中*/
-			}
-			.row{
-				margin: 20px;
-			}
-			.row .key{
-				margin: 0 10px;
-			}
-		</style>
 		<div class="wrapper" id="main">
 			
 		</div>
@@ -35,58 +15,83 @@
 	<footer></footer>
 
 	<script>
-		keys = {
+		// 1. 初始化数据
+		var keys = {
 			'0':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
 			'1':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9}, 
 			'2':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
 			'length': 3
 		}
-		hash = {
-			'q': 'qq.com',
+		var hash = {
+			'q': 'news.qq.com',
 			'w': 'weibo.com',
 			'e': 'ele.me',
-			'r': 'renren.com',
-			't': 'tianya.com',
-			'y': 'youtube.cn',
-			'u': 'uc.com',
+			't': 'taobao.com',
+			'y': 'yinxiang.com',
+			'u': 'uc.cn',
 			'i': 'iqiyi.com',
 			'o': 'opera.com',
 			'p':  undefined,
-			'a': 'acfun.tv',
-			's': 'sohu.com',
+			'a': '1688.com',
+			's': 'baike.sougou.com',
+			'h': 'tv.sohu.com',
+			'l': 'lianjia.com',
 			'z': 'zhihu.com',
+			'c': 'cctv.com',
+			'b': 'baidu.com',
 			'm': 'www.mcdonalds.com.cn'
 		}
 		// 取出 localStorage 中 zzz 对应的 hash
-		hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
+		var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
 		if(hashInLocalStorage){                  // 如果存在，则覆盖之前的 hash
 			hash = hashInLocalStorage
 		}
 		
+		
+		// 2. 生成键盘
 		// 遍历 keys，生成 kbd 标签
-		index = 0
+		var index = 0
 		while(index < keys['length']){     // 0 1 2
-			div = document.createElement('div')                    // 用文档创建一个 div
+			var div = document.createElement('div')      // 用文档创建一个 div              
 			div.className = 'row'
-			main.appendChild(div)                                  // 为main 添加这个子 div
-			row = keys[index]    // 第一个数组  第二个数组  第三个数组
-			index2 = 0
+			main.appendChild(div)     // 为main 添加这个子 div
+			var row = keys[index]     // 第一个数组  第二个数组  第三个数组
+			var index2 = 0
 			while(index2 < row['length']){   // 0~9  0~8  0~6
-				kbd = document.createElement('kbd')
-				kbd.textContent = row[index2]  // kbd 的文本内容
+				var kbd = document.createElement('kbd')
+				var span = document.createElement('span')
+				span.textContent = row[index2]  // kbd 中 span 的文本内容
+				span.className = "text"
 				kbd.className = 'key'
-				button = document.createElement('button')
+				var button = document.createElement('button')
 				button.textContent = '编辑'
+				button.id = row[index2]
+				var img = document.createElement('img')
+				if(hash[row[index2]]){
+					img.src = 'http://'+hash[row[index2]]+'/favicon.ico'
+				}else{
+					img.src = '//i.loli.net/2019/03/14/5c89c4f11de11.png'
+				}
+				img.onerror = function(xxx){          // 监听错误
+					xxx.target.src = '//i.loli.net/2019/03/14/5c89c4f11de11.png'
+				}
+
 				// 为什么下面用 target 而不用 button
 				// 因为 button 是一个容器，存的是变量，每点击一次button中存放的都是循环26次后的赋值
-				button.id = row[index2]
-				button.onclick = function(xzkjcnxlkcjlk){         // 监听点击事件（括号里名字随便取）
-					key = xzkjcnxlkcjlk['target']['id']           // 拿到用户点击元素的id q,w,e,r……
-					x = prompt('给我一个网址')                    // 让用户输入一个网址作为 x
-					hash[key] = x                                 // hash变更新网址
+				button.onclick = function(xzkjcnxlkcjlk){  // 监听点击事件（括号里名字随便取）
+					var button2 = xzkjcnxlkcjlk['target']  // xzkjcnxlkcjlk['target'] 就是用户点击的元素
+					var img2 =button2.previousSibling          // 前一个元素
+					var key = button2['id']                    // q,w,e,r……
+					var x = prompt('给我一个网址')             // 让用户输入一个网址作为 x
+					hash[key] = x                          // hash变更新网址
+					img2.src = 'http://'+x+'/favicon.ico'
+					img2.onerror = function(xxx){          // 监听错误
+						xxx.target.src = '////i.loli.net/2019/03/14/5c89c4f11de11.png'
+					}
 					localStorage.setItem('zzz', JSON.stringify(hash))   // 把 hash 存到 zzz 里
-					console.log(hash)
 				}
+				kbd.appendChild(span)
+				kbd.appendChild(img)
 				kbd.appendChild(button)
 				div.appendChild(kbd)
 				index2 = index2 + 1
@@ -94,9 +99,11 @@
 			index = index + 1
 		}
 
+
+		// 3. 监听键盘
 		document.onkeypress = function(xzkjcnxlkcjlk){        // 监听键盘事件（括号里名字随便取）
-			key = xzkjcnxlkcjlk['key']                        // 拿到用户按的哪个键 q,w,e,r……
-			website = hash[key]                               // 这个键对应的网站
+			var key = xzkjcnxlkcjlk['key']                    // 拿到用户按的哪个键 q,w,e,r……
+			var website = hash[key]                           // 这个键对应的网站
 			//location.href = 'http://'+website               // 把当前地址变为这个网址
 			window.open('http://'+website, '_blank')          // 在新窗口打开这个网址
 		}
