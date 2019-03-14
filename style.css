@@ -25,12 +25,32 @@ kbd:hover > button{
 main{
 	text-align: center;
 }
-#mainXXX{
+#main{
 	display:inline-block;
 }
-#mainXXX > div:nth-child(2){
-	margin-left: 2em;
+#main > div:nth-child(2){
+	margin-left: -20px;
 }
-#mainXXX > div:nth-child(3){
-	margin-left: 4em;
+#main > div:nth-child(3){
+	margin-left: -80px;
+}
+.key{
+	width: 50px;
+	height: 40px;
+	background: linear-gradient(to bottom, #292929 0%,#111111 100%);
+	border: 1px solid #373737;
+	border-radius: 6px;
+	color: #C5C5C5;
+	box-shadow: 0 0 0 1px #1A1B1B, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
+	display: inline-flex;
+	align-items: center;          /*键上下居中*/
+	justify-content: center;      /*键左右居中*/
+	font-size: 16px;                  /*键的上下间距*/
+	font-family: Helvetica;           /*键的左右间距*/
+}
+.row{
+	margin: 20px;
+}
+.row .key{
+	margin: 0 10px;
 }

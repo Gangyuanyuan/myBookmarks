@@ -8,7 +8,27 @@
 <body>
 	<header></header>
 	<main>
-		<div class="wrapper" id="mainXXX">
+		<style>
+			.key{
+				width: 50px;
+				height: 40px;
+				background: linear-gradient(to bottom, #292929 0%,#111111 100%);
+				border: 1px solid #373737;
+				border-radius: 6px;
+				color: #C5C5C5;
+				box-shadow: 0 0 0 1px #1A1B1B, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
+				display: inline-flex;
+				align-items: center;            /*上下居中*/
+				justify-content: center;        /*左右居中*/
+			}
+			.row{
+				margin: 20px;
+			}
+			.row .key{
+				margin: 0 10px;
+			}
+		</style>
+		<div class="wrapper" id="main">
 			
 		</div>
 	</main>
@@ -45,28 +65,30 @@
 		
 		// 遍历 keys，生成 kbd 标签
 		index = 0
-		while(index < keys['length']){              // 0 1 2
-			divXXX = document.createElement('div')       // 用文档创建一个 div
-			mainXXX.appendChild(divXXX)                 // 为mainXXX 添加这个子 div
-			row = keys[index]                      // 第一个数组  第二个数组  第三个数组
+		while(index < keys['length']){     // 0 1 2
+			div = document.createElement('div')                    // 用文档创建一个 div
+			div.className = 'row'
+			main.appendChild(div)                                  // 为main 添加这个子 div
+			row = keys[index]    // 第一个数组  第二个数组  第三个数组
 			index2 = 0
-			while(index2 < row['length']){         // 0~9  0~8  0~6
-				kbdXXX = document.createElement('kbd')
-				kbdXXX.textContent = row[index2]          // kbdXXX 的文本内容
-				buttonXXX = document.createElement('button')
-				buttonXXX.textContent = '编辑'
-				// 为什么下面用 target 而不用 buttonXXX
-				// 因为 buttonXXX 是一个容器，存的是变量，每点击一次buttonXXX中存放的都是循环26次后的赋值
-				buttonXXX.id = row[index2]
-				buttonXXX.onclick = function(xzkjcnxlkcjlk){      // 监听点击事件（括号里名字随便取）
+			while(index2 < row['length']){   // 0~9  0~8  0~6
+				kbd = document.createElement('kbd')
+				kbd.textContent = row[index2]  // kbd 的文本内容
+				kbd.className = 'key'
+				button = document.createElement('button')
+				button.textContent = '编辑'
+				// 为什么下面用 target 而不用 button
+				// 因为 button 是一个容器，存的是变量，每点击一次button中存放的都是循环26次后的赋值
+				button.id = row[index2]
+				button.onclick = function(xzkjcnxlkcjlk){         // 监听点击事件（括号里名字随便取）
 					key = xzkjcnxlkcjlk['target']['id']           // 拿到用户点击元素的id q,w,e,r……
 					x = prompt('给我一个网址')                    // 让用户输入一个网址作为 x
 					hash[key] = x                                 // hash变更新网址
 					localStorage.setItem('zzz', JSON.stringify(hash))   // 把 hash 存到 zzz 里
 					console.log(hash)
 				}
-				kbdXXX.appendChild(buttonXXX)
-				divXXX.appendChild(kbdXXX)
+				kbd.appendChild(button)
+				div.appendChild(kbd)
 				index2 = index2 + 1
 			}
 			index = index + 1
