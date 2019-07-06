@@ -2,11 +2,16 @@
 	margin: 0; 
 	padding: 0;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 a{
 	text-decoration: none;
 }
 kbd{
-	border: 1px solid red; 
 	width: 4em; 
 	height: 4em; 
 	display: inline-block;
@@ -46,6 +51,7 @@ main{
 .wrapper{
 	background: rgba(255,255,255,0.4);   /*透明白色框*/
 	border-radius: 10px;
+	margin-top: 80px;
 }
 .key{
 	width: 50px;
@@ -55,8 +61,8 @@ main{
 	border-radius: 6px;
 	color: #C5C5C5;
 	box-shadow: 0 0 0 1px #1A1B1B, 0 0 0 2px #1F2020, 0 3px 0 2px #080808;
-	font-size: 16px;                  /*键的上下间距*/
-	font-family: Helvetica;           /*键的左右间距*/
+	font-size: 16px;
+	font-family: Helvetica;           
 	position: relative;
 }
 .row{
@@ -64,6 +70,11 @@ main{
 }
 .row .key{
 	margin: 0 10px;
+}
+.key a{
+	display: inline-block;
+	width: 46px;
+	height: 22px;
 }
 .key img{
 	width: 16px;
@@ -76,4 +87,41 @@ main{
 	position: absolute;
 	left: 6px;
 	top: 4px;
+}
+
+.searchBar{
+	background: rgba(255,255,255,0.4);
+	border-radius: 8px;
+	width: 460px;
+	padding: 10px 20px;
+	margin: 0 auto;
+	position: relative;
+}
+.searchBar > form > input{
+	width: 400px;
+	height: 40px;
+	outline: none;
+	border: 2px solid #C5464A;
+	border-radius: 5px;
+	padding-left: 14px;
+	margin-left: -28px;
+}
+.searchBar > form > button{
+	width: 70px;
+	height: 36px;
+	border-radius: 0 5px 5px 0;
+	background: #C5464A;
+	border: none;
+	font-size: 14px;
+	color: #F9F0DA;
+	position: absolute;
+	top: 12px;
+	right: 64px;
+}
+.searchBar > form > svg{
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	top: 16px;
+	right: 24px;
 }
