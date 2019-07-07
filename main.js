@@ -117,3 +117,9 @@ function listionToUser(hash){
 		window.open('http://'+website, '_blank')       // 在新窗口打开这个网址
 	}
 }
+
+var searchButton = document.querySelector('#searchButton')
+searchButton.onclick = function(){
+	var value = document.getElementById("text").value
+	window.open('http://www.baidu.com/s?wd='+value)
+}

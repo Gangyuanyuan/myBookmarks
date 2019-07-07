@@ -92,31 +92,35 @@ main{
 .searchBar{
 	background: rgba(255,255,255,0.4);
 	border-radius: 8px;
-	width: 460px;
+	width: 480px;
 	padding: 10px 20px;
 	margin: 0 auto;
 	position: relative;
 }
+.searchBar > form > input,
+.searchBar > form > button{
+	border: none;
+	outline: none;
+}
+
 .searchBar > form > input{
 	width: 400px;
-	height: 40px;
-	outline: none;
+	height: 36px;
 	border: 2px solid #C5464A;
 	border-radius: 5px;
 	padding-left: 14px;
-	margin-left: -28px;
+	margin-left: -32px;
 }
 .searchBar > form > button{
 	width: 70px;
 	height: 36px;
 	border-radius: 0 5px 5px 0;
 	background: #C5464A;
-	border: none;
 	font-size: 14px;
 	color: #F9F0DA;
 	position: absolute;
 	top: 12px;
-	right: 64px;
+	right: 66px;
 }
 .searchBar > form > svg{
 	width: 28px;
