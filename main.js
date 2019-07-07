@@ -9,7 +9,7 @@ generateKeyboard(keys,hash)
 // 3. 监听用户动作
 listionToUser(hash)
 
-// 4. 下面是工具函数
+// 4. 工具函数
 function getFromLocalStorage(name){
 	return JSON.parse(localStorage.getItem(name) || 'null')
 }
@@ -110,14 +110,28 @@ function generateKeyboard(keys,hash){
 }
 
 function listionToUser(hash){
+	var inputBar = document.querySelector('form > #text')
+	var inputting = false
+	inputBar.addEventListener('focus', (e)=>{
+		inputting = true
+		e.target.placeholder=''
+	})
+	inputBar.addEventListener('focusout', (e)=>{
+		inputting = false
+		e.target.placeholder='请输入您要搜索的内容...'
+	})
+
 	document.onkeypress = function(xzkjcnxlkcjlk){   // 监听键盘事件
 		var key = xzkjcnxlkcjlk['key']                 // 拿到用户按的哪个键 q,w,e,r……
 		var website = hash[key]                        // 这个键对应的网站
-		//location.href = 'http://'+website            // 把当前地址变为这个网址
-		window.open('http://'+website, '_blank')       // 在新窗口打开这个网址
+		if(!inputting){
+			//location.href = 'http://'+website            // 把当前地址变为这个网址
+			window.open('http://'+website, '_blank')       // 在新窗口打开这个网址
+		}
 	}
 }
 
+// 搜索框搜索功能
 var searchButton = document.querySelector('#searchButton')
 searchButton.onclick = function(){
 	var value = document.getElementById("text").value
