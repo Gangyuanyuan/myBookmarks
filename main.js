@@ -85,12 +85,12 @@ function init(){
 
 function generateKeyboard(keys,hash){
 	// 遍历 keys，生成 kbd 标签
-	for(var index = 0; index < keys['length']; index = index + 1){  // index取值 0 1 2
+	for(var index=0; index<keys['length']; index=index+1){  // index取值 0 1 2
 		var div = tag('div')                    
 		div.className = 'row'
 		main.appendChild(div)        // 为main添加这个子div
 		var row = keys[index]        // 第一个数组  第二个数组  第三个数组
-		for(var index2 = 0; index2 < row['length']; index2 = index2 + 1){ //index2取值0~9 0~8 0~6
+		for(var index2=0; index2<row['length']; index2=index2+1){ //index2取值0~9 0~8 0~6
 			var span = createSpan(row[index2])
 
 			var button = createButton(row[index2])
@@ -121,13 +121,22 @@ function listionToUser(hash){
 		e.target.placeholder='请输入您要搜索的内容...'
 	})
 
-	document.onkeypress = function(xzkjcnxlkcjlk){   // 监听键盘事件
-		var key = xzkjcnxlkcjlk['key']                 // 拿到用户按的哪个键 q,w,e,r……
-		var website = hash[key]                        // 这个键对应的网站
+	document.onkeypress = function(keyPress){   // 监听键盘事件
+		var key = keyPress['key']                 // 拿到用户按的哪个键 q,w,e,r……
+		var website = hash[key]                   // 这个键对应的网站
+		var currentKey = document.querySelector('#'+key).parentNode
+		currentKey.classList.add('action')
 		if(!inputting){
-			//location.href = 'http://'+website            // 把当前地址变为这个网址
-			window.open('http://'+website, '_blank')       // 在新窗口打开这个网址
+			setTimeout(()=>{
+				//location.href = 'http://'+website        // 在当前窗口跳转
+				window.open('http://'+website, '_blank')   // 在新窗口打开这个网址
+			}, 500)
 		}
+	}
+	document.onkeyup = function(keyUp){
+		var key = keyUp['key']
+		var currentKey = document.querySelector('#'+key).parentNode
+		currentKey.classList.remove('action')
 	}
 }
 
