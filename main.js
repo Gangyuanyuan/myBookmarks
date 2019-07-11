@@ -146,3 +146,10 @@ searchButton.onclick = function(){
 	var value = document.getElementById("text").value
 	window.open('http://www.baidu.com/s?wd='+value)
 }
+var searchKey = document.querySelector('#text')
+searchKey.onkeyup = function(e){
+	if(e.key == 'Enter'){
+		var value = document.getElementById("text").value
+		window.open('http://www.baidu.com/s?wd='+value)
+	}
+}

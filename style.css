@@ -127,6 +127,7 @@ main{
 	position: absolute;
 	top: 12px;
 	right: 66px;
+	cursor: pointer;
 }
 .searchBar > form > svg{
 	width: 28px;
